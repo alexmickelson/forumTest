@@ -35,4 +35,4 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@Html.Partial("_NewComment", new Comment { Parent = null, Post = Model.Id, Id = new Guid() })
+@Html.Partial("_NewComment", new Comment { Parent = Guid.NewGuid(), Id = Guid.NewGuid(), Post=Model.Id })
