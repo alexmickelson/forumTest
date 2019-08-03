@@ -26,21 +26,20 @@ namespace forumTest.Controllers
         }
 
         // GET: Posts/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var post = await _context.posts
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (post == null)
+            var postVM = new PostViewModel();
+            postVM.Post = await _context.posts.FirstOrDefaultAsync(m => m.Id == id);
+            if (postVM.Post == null)
             {
                 return NotFound();
             }
-
-            return View(post);
+            postVM.Comments = await _context.comments.Where(c => c.Post == id).ToListAsync();
+            return View(postVM);
         }
 
         // GET: Posts/Create

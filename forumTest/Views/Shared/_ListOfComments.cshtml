@@ -1,6 +1,8 @@
-﻿@model CommentsViewModel
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Comment>
 
+
+@foreach (var comment in Model)
+{
+    <p>@comment.Text</p>
+}
 
