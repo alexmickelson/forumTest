@@ -4,7 +4,7 @@
     var comments = Model.Comments.Where(c => c.Parent == Model.ParentId);
 }
 <script>
-    function toggle(){
+    function toggleSibling(){
         var x = event.target.nextElementSibling;
         if (x.style.display === "none") {
             x.style.display = "block";
@@ -12,19 +12,41 @@
             x.style.display = "none";
         }
     }
+    function toggleChildren(){
+        //long but selects the children div
+        var x = event.target.parentElement.nextElementSibling; 
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+        event.target.textContent="show";
+        debugger;   
+    }
+    
 </script>
 @foreach (var comment in comments)
 {
-    <p>@comment.Text</p>
-    <p>@comment.Time</p>
-
-    <button class="btn btn-secondary" onclick="toggle()">reply</button>
-    <div style="display:None;" class="indent">
-        @Html.Partial("_NewComment", new Comment(){ Id = Guid.NewGuid(), Post=comment.Post, Parent=comment.Id })
+    <div>@//top level of the comment
+        <div class="bar" ></div>
+        <button onclick="toggleChildren()" class="link" style="float:right;" >hide</button>
+        <p>@comment.Text</p>
     </div>
+    <div>@//this is the stuff to toggle
+        <div>
+            <p>@comment.Time</p>
 
-    <div class="indent">
-        @Html.Partial("_ListOfComments", new CommentsViewModel(){ Comments = Model.Comments, ParentId = comment.Id})
+            <div>@//this is the new comment sections
+                <button class="link" onclick="toggleSibling()">reply</button>
+                <div style="display:None;" >
+                    @Html.Partial("_NewComment", new Comment(){ Id = Guid.NewGuid(), Post=comment.Post, Parent=comment.Id })
+                </div>
+            </div>
+
+            <div class="indent"> @//child comments
+                @Html.Partial("_ListOfComments", new CommentsViewModel(){ Comments = Model.Comments, ParentId = comment.Id})
+            </div>
+        </div>
     </div>
 
 
