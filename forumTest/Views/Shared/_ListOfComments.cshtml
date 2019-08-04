@@ -27,23 +27,27 @@
 </script>
 @foreach (var comment in comments)
 {
-    <div>@//top level of the comment
+    <!-- top level of the comment -->
+    <div>
         <div class="bar" ></div>
         <button onclick="toggleChildren()" class="link" style="float:right;" >hide</button>
         <p>@comment.Text</p>
     </div>
-    <div>@//this is the stuff to toggle
+    <!-- this is the stuff to toggle -->
+    <div>
         <div>
             <p>@comment.Time</p>
 
-            <div>@//this is the new comment sections
+            <!-- this is the new comment sections -->
+            <div>
                 <button class="link" onclick="toggleSibling()">reply</button>
                 <div style="display:None;" >
                     @Html.Partial("_NewComment", new Comment(){ Id = Guid.NewGuid(), Post=comment.Post, Parent=comment.Id })
                 </div>
             </div>
 
-            <div class="indent"> @//child comments
+            <!-- child comments -->
+            <div class="indent"> 
                 @Html.Partial("_ListOfComments", new CommentsViewModel(){ Comments = Model.Comments, ParentId = comment.Id})
             </div>
         </div>
