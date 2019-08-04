@@ -36,4 +36,4 @@
 </div>
 
 @Html.Partial("_NewComment", new Comment { Id = Guid.NewGuid(), Post=Model.Post.Id })
-@Html.Partial("_ListOfComments", Model.Comments)
+@Html.Partial("_ListOfComments", new CommentsViewModel(){ Comments = Model.Comments, ParentId = new Guid()})

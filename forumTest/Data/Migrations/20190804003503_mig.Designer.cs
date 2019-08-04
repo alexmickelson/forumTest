@@ -9,8 +9,8 @@ using forumTest.Data;
 namespace forumTest.Data.Migrations
 {
     [DbContext(typeof(ForumsContext))]
-    [Migration("20190726023232_first")]
-    partial class first
+    [Migration("20190804003503_mig")]
+    partial class mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,12 +23,14 @@ namespace forumTest.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("Parent");
+                    b.Property<Guid>("Parent");
 
                     b.Property<Guid>("Post");
 
                     b.Property<string>("Text")
                         .IsRequired();
+
+                    b.Property<DateTime>("Time");
 
                     b.HasKey("Id");
 

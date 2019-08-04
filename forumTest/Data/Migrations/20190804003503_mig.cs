@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace forumTest.Data.Migrations
 {
-    public partial class first : Migration
+    public partial class mig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,9 @@ namespace forumTest.Data.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Text = table.Column<string>(nullable: false),
+                    Time = table.Column<DateTime>(nullable: false),
                     Post = table.Column<Guid>(nullable: false),
-                    Parent = table.Column<Guid>(nullable: true)
+                    Parent = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -21,12 +21,14 @@ namespace forumTest.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("Parent");
+                    b.Property<Guid>("Parent");
 
                     b.Property<Guid>("Post");
 
                     b.Property<string>("Text")
                         .IsRequired();
+
+                    b.Property<DateTime>("Time");
 
                     b.HasKey("Id");
 

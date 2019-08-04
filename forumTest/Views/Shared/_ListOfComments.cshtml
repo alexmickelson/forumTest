@@ -1,8 +1,32 @@
-﻿@model List<Comment>
+﻿@model CommentsViewModel
 
-
-@foreach (var comment in Model)
+@{
+    var comments = Model.Comments.Where(c => c.Parent == Model.ParentId);
+}
+<script>
+    function toggle(){
+        var x = event.target.nextElementSibling;
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+@foreach (var comment in comments)
 {
     <p>@comment.Text</p>
+    <p>@comment.Time</p>
+
+    <button class="btn btn-secondary" onclick="toggle()">reply</button>
+    <div style="display:None;" class="indent">
+        @Html.Partial("_NewComment", new Comment(){ Id = Guid.NewGuid(), Post=comment.Post, Parent=comment.Id })
+    </div>
+
+    <div class="indent">
+        @Html.Partial("_ListOfComments", new CommentsViewModel(){ Comments = Model.Comments, ParentId = comment.Id})
+    </div>
+
+
 }
 
