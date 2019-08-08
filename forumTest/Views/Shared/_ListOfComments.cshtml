@@ -1,6 +1,7 @@
 ﻿@model CommentsViewModel
 
 @{
+    //this partialview iterates through sibling comments and recursively makes the children comments
     var comments = Model.Comments.Where(c => c.Parent == Model.ParentId);
 }
 <script>
@@ -8,8 +9,10 @@
         var x = event.target.nextElementSibling;
         if (x.style.display === "none") {
             x.style.display = "block";
+            event.target.textContent="hide";
         } else {
             x.style.display = "none";
+            event.target.textContent="reply";
         }
     }
     function toggleChildren(){
@@ -17,10 +20,11 @@
         var x = event.target.parentElement.nextElementSibling; 
         if (x.style.display === "none") {
             x.style.display = "block";
+            event.target.textContent="hide";
         } else {
             x.style.display = "none";
+            event.target.textContent="show";
         }
-        event.target.textContent="show";
         debugger;   
     }
     
