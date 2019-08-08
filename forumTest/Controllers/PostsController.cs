@@ -40,6 +40,23 @@ namespace forumTest.Controllers
             }
             postVM.Comments = await _context.comments.Where(c => c.Post == id).ToListAsync();
             return View(postVM);
+        }// GET: Posts/Details/5
+        public async Task<IActionResult> DetailsWithComment(Guid postId, Guid commentId)
+        {
+            if (postId == null)
+            {
+                return NotFound();
+            }
+            var postVM = new PostViewModel();
+            postVM.Post = await _context.posts.FirstOrDefaultAsync(m => m.Id == postId);
+            if (postVM.Post == null)
+            {
+                return NotFound();
+            }
+            postVM.Comments = await _context.comments.Where(c => c.Post == postId).ToListAsync();
+
+            ViewData["comment"] = commentId;
+            return View("Details", postVM);
         }
 
         // GET: Posts/Create

@@ -28,7 +28,7 @@
 @foreach (var comment in comments)
 {
     <!-- top level of the comment -->
-    <div>
+    <div id="@comment.Id">
         <div class="bar" ></div>
         <button onclick="toggleChildren()" class="link" style="float:right;" >hide</button>
         <p>@comment.Text</p>

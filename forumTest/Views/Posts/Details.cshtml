@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Details";
 }
-
 <div>
     <h4>Post</h4>
     <hr />
@@ -35,3 +34,13 @@
 
 @Html.Partial("_NewComment", new Comment { Id = Guid.NewGuid(), Post=Model.Post.Id })
 @Html.Partial("_ListOfComments", new CommentsViewModel(){ Comments = Model.Comments, ParentId = new Guid()})
+
+<!-- jump to comment on load -->    
+<script>
+
+
+    var tmp = "#@ViewData["comment"]";
+    if (tmp !== '#') {
+        window.location.hash=tmp;
+    }
+</script>

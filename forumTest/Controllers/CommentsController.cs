@@ -32,7 +32,7 @@ namespace forumTest.Controllers
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
             }
-            return RedirectToAction("Details", "Posts", new { id = comment.Post } );
+            return RedirectToAction("DetailsWithComment", "Posts", new { postId = comment.Post, commentId = comment.Parent } );
         }
 
         // GET: Comments/Edit/5
