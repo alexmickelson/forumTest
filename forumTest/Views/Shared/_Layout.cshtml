@@ -17,6 +17,29 @@
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/my.css" />
+    <script>
+        function toggleSibling(){
+            var x = event.target.nextElementSibling;
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                event.target.textContent="hide";
+            } else {
+                x.style.display = "none";
+                event.target.textContent="reply";
+            }
+        }
+        function toggleChildren(){
+            //selects the children div
+            var x = event.target.parentElement.nextElementSibling; 
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                event.target.textContent="hide";
+            } else {
+                x.style.display = "none";
+                event.target.textContent="show";
+            } 
+        }
+    </script>
 </head>
 <body>
     <header>
