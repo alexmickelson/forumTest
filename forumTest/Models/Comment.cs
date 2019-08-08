@@ -9,6 +9,7 @@ namespace forumTest.Models
     public class Comment
     {
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Text { get; set; }
         [Required]
         public DateTime Time { get; set; }

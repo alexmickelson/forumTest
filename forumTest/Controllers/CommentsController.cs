@@ -28,6 +28,7 @@ namespace forumTest.Controllers
         {
             if (ModelState.IsValid)
             {
+                comment.Text = comment.Text.Replace(Environment.NewLine, "\n");
                 comment.Id = Guid.NewGuid();
                 _context.Add(comment);
                 await _context.SaveChangesAsync();

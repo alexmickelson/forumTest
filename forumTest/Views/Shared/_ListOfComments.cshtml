@@ -10,12 +10,13 @@
     <div id="@comment.Id">
         <div class="bar" ></div>
         <button onclick="toggleChildren()" class="link" style="float:right;" >hide</button>
-        <p>@comment.Text</p>
+        <div style="float:right;">@comment.Time</div>
+        <div style="white-space:pre-line;overflow:hidden;">@comment.Text</div>
     </div>
     <!-- this is the stuff to toggle -->
     <div>
         <div>
-            <p>@comment.Time</p>
+        
 
             <!-- this is the new comment sections -->
             <div>

@@ -34,9 +34,11 @@
             if (x.style.display === "none") {
                 x.style.display = "block";
                 event.target.textContent="hide";
+                event.target.nextElementSibling.nextElementSibling.style.whiteSpace="pre-line"
             } else {
                 x.style.display = "none";
                 event.target.textContent="show";
+                event.target.nextElementSibling.nextElementSibling.style.whiteSpace="nowrap"
             } 
         }
     </script>
@@ -80,7 +82,7 @@
         </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                aslong but p-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
                 crossorigin="anonymous"
                 integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
         </script>
